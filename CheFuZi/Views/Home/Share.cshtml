@@ -1,0 +1,86 @@
+﻿@model CheFuZi.Models.ShareModel
+@{
+    ViewBag.Title = @Model.AboutTitle;
+    Layout = "~/Views/Shared/_Mobile.cshtml";
+}
+<div class="page-header">
+    <h3 class="text-center">@ViewBag.Title</h3>
+@if (Model.ClassType == 2)
+{
+    <h6 class="text-center" style="color:#555555">主播：@Model.AboutAuthor</h6>
+}
+else
+{
+    <h4 class="text-center">@Model.AboutAuthor</h4>
+}
+    <h5 class="text-left"><small>@Model.AddDate.ToString("yyyy-MM-dd HH:mm")</small></h5>
+</div>
+@if (Model.ClassType == 1)
+{
+    <div class="panel panel-default">
+        <div class="panel-body text-center">
+            芮卡家园APP<br />
+            海量、优质、原创的幼儿资源;全方位、专业化的课程培训视频;精彩、有趣、个性的录音功能.
+        </div>
+    </div>
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.AboutSummary))
+{
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @MvcHtmlString.Create(Model.AboutSummary)
+        </div>
+    </div>
+}
+
+@if (((Model.ClassType < 3) || (Model.ClassType >8)) && (!String.IsNullOrWhiteSpace(Model.AboutImages)))
+{
+    string[] imageList = Model.AboutImages.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+    foreach (string myItem in imageList)
+    {
+        <div class="text-center">
+                <img class="img-responsive" style="clear: both;display: block;margin:auto;" src="@myItem" />
+        </div>
+    }
+    <div style="height:10px;">
+    </div>
+}
+@if (!String.IsNullOrWhiteSpace(Model.AboutAudio))
+{
+        <div class="text-center">
+            <audio src="@Model.AboutAudio" controls="controls">
+                您的浏览器不支持 【视频播放】 标签。
+                <br />
+            </audio>
+        </div>
+        <div style="height:10px;">
+        </div>
+}
+
+@if (!String.IsNullOrWhiteSpace(Model.AboutVideo))
+{
+    string[] videoList = Model.AboutVideo.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+    foreach (string myItem in videoList)
+    {
+        <div class="text-center">
+            <video src="@myItem" controls="controls">
+                您的浏览器不支持 【视频播放】 标签。
+                <br />
+            </video>
+        </div>
+    <div style="height:10px;">
+    </div>
+    }
+}
+
+
+@if (!String.IsNullOrWhiteSpace(Model.AboutContent))
+{
+    <div class="myContentText" style="line-height:30px;letter-spacing:3px;">
+        @MvcHtmlString.Create(Model.AboutContent.Replace("\n", "<br/>　　"))
+    </div>
+}
+
+<div style="height:20px;">
+</div>

@@ -1,0 +1,12 @@
+﻿<div class="container-fluid">
+    <div class="page-nation">
+        <ul class="pagination pagination-sm">
+            <li class="@ViewBag.IsFirstPage"><a href="@ViewBag.myPageUrl&CurrentPage=1">首页</a></li>
+            <li class="@ViewBag.IsFirstPage"><a href="@ViewBag.myPageUrl&CurrentPage=@ViewBag.PPage">上一页</a></li>
+            <li class="active"><a href="#"> @ViewBag.CurrentPage</a> </li>
+            <li class="@ViewBag.IsEndPage"><a href="@ViewBag.myPageUrl&CurrentPage=@ViewBag.NPage">下一页</a></li>
+            <li class="@ViewBag.IsEndPage"><a href="@ViewBag.myPageUrl&CurrentPage=@ViewBag.PageCount ">末页</a></li>
+            <li class="disabled"><a href="#">共 @ViewBag.PageCount 页，@ViewBag.RecordCount 条</a></li>
+        </ul>
+    </div>
+</div>

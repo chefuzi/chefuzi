@@ -1,0 +1,91 @@
+﻿@using CheFuZi.Function;
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+    //
+    string[] Pagekeys = { "CurrentPage", "Del", "status" };
+    ViewBag.myPageUrl = FunctionClass.UrlString(Pagekeys);
+    string[] Delkeys = { "Del", "status" };
+    ViewBag.myDelUrl = FunctionClass.UrlString(Delkeys);
+}
+<div class="container-fluid TablePageContent">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+        </div>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <input type="text" name="search" placeholder="手机号搜索" value="@ViewBag.Search" class="form-control" />
+                </div>
+                <button type="submit" class="btn col-xs-2 col-sm-1 col-md-1 col-lg-1">搜索</button>
+                </div>
+        </form>
+    </div>
+
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th style="width:30%;">手机号</th>
+                <th style="width:25%;">注册时间</th>
+                <th style="width:15%;">最近登录</th>
+                <th style="width:10%;">状态</th>
+                <th style="width:10%;">操作</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.DataList != null)
+            {
+                foreach (var itemData in ViewBag.DataList)
+                {
+                    <tr>
+                        <td><a href="UserView?mobilestr=@itemData.MobilePhone">@itemData.MobilePhone</a></td>
+                        <td>@itemData.AddDate</td>
+                        <td>@itemData.RecentlyLoginDate</td>
+                        <td>
+                            @if (itemData.RoleId < 100)
+                            {
+                                <a class="btn  btn-toolbar" href="@ViewBag.myDelUrl&status=@itemData.MobilePhone">
+                                    @if (itemData.Status == 200)
+                                    {
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                        <span> 正常</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-eye-close"></span>
+                                        <span> 锁定</span>
+                                    }
+                                </a>
+                            }
+                            else
+                            {
+                                @MvcHtmlString.Create("管理员");
+                            }
+                        </td>
+                        <td>
+                            @if (itemData.RoleId < 100)
+                            {
+                                <a class="btn  btn-toolbar" onclick="delcfm('@ViewBag.myDelUrl&del=@itemData.MobilePhone')">
+                                    <span class="glyphicon glyphicon-remove"></span> 删除
+                                </a>
+                            }
+                            else
+                            {
+                                @MvcHtmlString.Create("管理员");
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!--分页 Start-->
+@Html.Partial("../Shared/_PagePartial");
+<!--分页 End-->
+<!--删除确认-->
+@Html.Partial("../Shared/_DelConfirmPartial");
+

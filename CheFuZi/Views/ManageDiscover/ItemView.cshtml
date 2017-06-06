@@ -1,0 +1,95 @@
+﻿@model CheFuZi.Models.DiscoverArticleModel
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+    string backUrl = ViewBag.ReturnUrl;
+    if (backUrl.IndexOf('?') <= 0)
+    {
+        backUrl = backUrl + "?";
+    }
+    else
+    {
+        backUrl = backUrl + "&";
+    }
+}
+
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="delcfm('@(backUrl)del=@Model.ArticlId')"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="form-inline">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ArticleTitle) @Model.ArticleTitle
+            </div>
+        </div>
+        <div class="form-inline">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MobilePhone) @Model.MobilePhone
+            </div>
+        </div>
+    </div>
+</div>
+@if (!String.IsNullOrWhiteSpace(Model.ArticleImages))
+{
+    string[] imageList = Model.ArticleImages.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="list-group list-inline">
+                @foreach (string myItem in imageList)
+                {
+                    <li class="list-group-item" style="width:200px;">
+                        <div class="text-center">
+                            <img class="img-responsive" style="clear: both;display: block;margin:auto;" src="@myItem" />
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+@if (!String.IsNullOrWhiteSpace(Model.ArticleVideo))
+{
+    string[] videoList = Model.ArticleVideo.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="list-group list-inline">
+                @foreach (string myItem in videoList)
+                {
+                    <li class="list-group-item" style="width:250px;">
+                        <div class="text-center">
+                            <video src="@myItem" controls="controls" width="200">
+                                您的浏览器不支持 【视频播放】 标签。
+                                <br />
+                            </video>
+                        </div>
+                        <div style="height:10px;">
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+        @{
+            if (!String.IsNullOrWhiteSpace(Model.ArticleContent))
+            {
+                @MvcHtmlString.Create(Model.ArticleContent)
+            }
+            else
+            {
+                @MvcHtmlString.Create("<p></p>")
+            }
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!--删除确认-->
+@Html.Partial("../Shared/_DelConfirmPartial");

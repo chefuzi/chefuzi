@@ -1,0 +1,178 @@
+﻿@using CheFuZi.Function
+@model CheFuZi.DataBaseModel.User_UserName
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+    //
+    string backUrl = ViewBag.ReturnUrl;
+    if (backUrl.IndexOf('?') <= 0)
+    {
+        backUrl = backUrl + "?";
+    }
+    else
+    {
+        backUrl = backUrl + "&";
+    }
+    //头像
+    string myHeadImage = "";
+    if (!String.IsNullOrWhiteSpace(Model.HeadImage))
+    {
+        myHeadImage = StaticVarClass.myDomain+Model.HeadImage;
+    }
+    else
+    {
+        myHeadImage = StaticVarClass.DefaultHeadImage;
+    }
+    //出生日期
+    string myBirthDate = Model.BirthDate.ToString();
+    if (!String.IsNullOrWhiteSpace(myBirthDate))
+    {
+        DateTime temDate = DateTime.Now;
+        DateTime.TryParse(myBirthDate, out temDate);
+        myBirthDate = temDate.ToString("yyyy年MM月dd日");
+    }
+    //身份
+    string myRoleStr = "未知";
+    switch (Model.RoleId)
+    {
+        case 0:
+            myRoleStr = "待定";
+            break;
+        case 1:
+            myRoleStr = "家长";
+            break;
+        case 2:
+            myRoleStr = "教师";
+            break;
+        case 12:
+            myRoleStr = "家长和教师";
+            break;
+        case 100:
+            myRoleStr = "系统管理员";
+            break;
+    }
+    //用户状态
+    string bodyStatus = "panel-danger";
+    string myStatusStr = "未知";
+    switch (Model.Status)
+    {
+        case 100:
+            myStatusStr = "未审核";
+            bodyStatus = "panel-warning";
+            break;
+        case 200:
+            myStatusStr = "正常";
+            bodyStatus = "panel-success";
+            break;
+        case 201:
+            myStatusStr = "锁定";
+            bodyStatus = "panel-danger";
+            break;
+        case 300:
+            myStatusStr = "未公开";
+            break;
+    }
+}
+
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+    @if (Model.RoleId < 100)
+    {
+        <div class="btn-group">
+            <a class="btn btn-default" onclick="delcfm('@(backUrl)mobilestr=@Model.MobilePhone')"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+        </div>
+    }
+</div>
+<div style="height:20px;"></div>
+
+<div class="panel @bodyStatus">
+    <div class="panel-heading">
+        @ViewBag.Title
+    </div>
+    <div class="panel-body">
+        用户状态：@myStatusStr
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-xs-6  col-sm-6 col-md-4 col-lg-4">
+                <ul class="list-unstyled list-group">
+                    <li class="list-group-item">
+                        <span class="h4">手机号：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.MobilePhone)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">姓名：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.RealName)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">出生日期：</span>
+                        <div class="display-field">
+                            @myBirthDate
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">地址：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.ProvinceName)
+                            .
+                            @Html.DisplayFor(model => model.CityName)
+                            .
+                            @Html.DisplayFor(model => model.DistrictName)
+                            .
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">注册日期：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.AddDate)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">最近登录日期：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.RecentlyLoginDate)
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8">
+                <ul list-unstyled list-group>
+                    <li class="list-group-item">
+                        <div class="display-field">
+                            <img src="@myHeadImage" style="width:100px;" />
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">昵称：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.NickName)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">幼儿园名称：</span>
+                        <div class="display-field">
+                            @Html.DisplayFor(model => model.Kindergarten)
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <span class="h4">身份类型：</span>
+                        <div class="display-field">
+                            @myRoleStr
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--删除确认-->
+@Html.Partial("../Shared/_DelConfirmPartial");

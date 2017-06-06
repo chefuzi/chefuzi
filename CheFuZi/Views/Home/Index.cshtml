@@ -1,0 +1,252 @@
+﻿@using CheFuZi.Function
+@{
+    ViewBag.Title = "芮卡家园";
+    ViewBag.httpUrl = StaticVarClass.myDomain+ "Service/";
+    ViewBag.WebUrl = StaticVarClass.myDomain;
+}
+
+<h3>接口调用说明</h3>
+文件上传=====================================================<br />
+@(ViewBag.httpUrl)FileUpload/UpdateFile?filetype=mp4&upfilename=<br />
+说明：<br />
+filetype=文件类型（图片：jpg/jpeg/png/gif;音频：mp3;视频：mp4）<br />
+upfilename=续传，一次性传完的情况不用提交该参数<br />
+数据体内容为文件内容；<br />
+------************************************------<br /><br />
+
+登录=====================================================<br />
+@(ViewBag.httpUrl)User/Login<br/>
+{"username":"13931999409","pwd":"123123"}<br />
+退出登录=====================================================<br />
+@(ViewBag.httpUrl)User/LoginOut<br />
+发送验证码=====================================================<br />
+@(ViewBag.httpUrl)User/SendCheckCode<br />
+{"username":"13931999409","operationtype":"0"}<br />
+说明：<br />
+operationtype=0,注册；1修改密码<br />
+检验验证码==================================<br />
+@(ViewBag.httpUrl)User/CheckCode<br />
+{"username":"13931999409","checkcode":"12345"}<br />
+用户注册=====================================================<br />
+@(ViewBag.httpUrl)User/Register<br />
+{"username":"13931999409","pwd":"123123"}<br />
+修改密码==================================<br />
+@(ViewBag.httpUrl)User/EditPwd<br />
+{"username":"13931999409","pwd":"123123"}<br />
+获取用户信息=====================================================<br />
+@(ViewBag.httpUrl)User/GetUserInfo<br />
+修改用户信息=====================================================<br />
+@(ViewBag.httpUrl)User/EditUserInfo
+{"headimage":"","nickname":"东东d","birthdate":"2005-7-8", "districtnum":"3","address":"联盟路", "kindergarten":"星星幼儿园","roleid":"1"}<br />
+说明：<br />
+roleid=0待定，1家长，2老师<br />
+
+------************************************------<br /><br />
+
+省份列表===========================================<br />
+@(ViewBag.httpUrl)public/GetProvince<br />
+城市列表===========================================<br />
+@(ViewBag.httpUrl)public/GetCity<br />
+{"province":"3"}<br />
+区县列表===========================================<br />
+@(ViewBag.httpUrl)public/GetDistrict<br />
+{"city":"3"}<br />
+性别===========================================<br />
+@(ViewBag.httpUrl)public/GetSex<br />
+身份===========================================<br />
+@(ViewBag.httpUrl)public/GetRole<br />
+
+------************************************------<br /><br />
+
+学一学图书类别===========================================<br />
+@(ViewBag.httpUrl)Study/BookClassList<br />
+学一学图书列表===========================================<br />
+@(ViewBag.httpUrl)Study/BookList<br />
+{"bookclassid":"1","currentpage":"1","pagesize":"2"}<br />
+学一学图书已经注册列表===========================================<br />
+@(ViewBag.httpUrl)Study/BookRegList<br />
+------************************************------<br /><br />
+
+点一点图书类别===========================================<br />
+@(ViewBag.httpUrl)Click/BookClassList<br />
+点一点图书列表===========================================<br />
+@(ViewBag.httpUrl)Click/BookList<br />
+{"bookclassid":"1","currentpage":"1","pagesize":"2"}<br />
+获取点一点内容===========================================<br />
+@(ViewBag.httpUrl)Click/GetBook<br />
+{"myid":"1"}<br />
+点一点阅读天数加一===========================================<br />
+@(ViewBag.httpUrl)Click/ReadBookDays<br />
+{"bookid":"1"}<br />
+获取当前用户阅读天数===========================================<br />
+@(ViewBag.httpUrl)Click/GetReadDays<br />
+获取用户阅读排行榜列表===========================================<br />
+@(ViewBag.httpUrl)Click/GetReadDaysList<br />
+{"currentpage":"1","pagesize":"2"}<br />
+------************************************------<br /><br />
+
+获取听一听类别===========================================<br />
+@(ViewBag.httpUrl)audio/ClassList<br />
+获取听一听专辑列表===========================================<br />
+@(ViewBag.httpUrl)audio/AlbumList<br />
+{"classid":"2","currentpage":"1","pagesize":"10"}<br />
+获取听一听专辑内音频列表===========================================<br />
+@(ViewBag.httpUrl)audio/AudioList<br />
+{"albumid":"4","currentpage":"1","pagesize":"10","orderby":"0","isasc":"1"}<br />
+说明：<br />
+albumid=专辑ID；<br />
+orderby=1按日期排序，2按播放次数排序，不提供参数默认按系统指定顺序；<br />
+isasc=1正序，2倒叙，不提供参数或者其他参数按正序排序（从小到大）<br />
+获取听一听内容===========================================<br />
+@(ViewBag.httpUrl)audio/GetAudio<br />
+{"myid":"1"}<br />
+获取录音背景配音列表===========================================<br />
+@(ViewBag.httpUrl)audio/GetBgSound<br />
+添加用户录音===========================================<br />
+@(ViewBag.httpUrl)audio/AddSoundRecord<br />
+{"audioid":"4","audiourl":"http://www.asdf.com/asd","bgmusic":"http://www.asdf.com/asd","seconds":"0","operate":"1"}<br />
+operate=0保存；1保存并发布；<br />
+seconds=音频时长（秒）<br />
+
+获取用户录音秀列表===========================================<br />
+@(ViewBag.httpUrl)audio/GetUserSoundList<br />
+{"currentpage":"1","pagesize":"10"}<br />
+<br />
+------************************************------<br />
+获取看一看类别===========================================<br />
+@(ViewBag.httpUrl)Video/ClassList<br />
+获取看一看专辑列表===========================================<br />
+@(ViewBag.httpUrl)Video/AlbumList<br />
+{"classid":"1","currentpage":"1","pagesize":"10"}<br />
+获取看一看专辑内视频列表===========================================<br />
+@(ViewBag.httpUrl)Video/VideoList<br />
+{"albumid":"1","classid":"2","currentpage":"1","pagesize":"10","orderby":"0","isasc":"1"}<br />
+说明：<br />
+albumid=专辑ID；<br />
+orderby=1按日期排序，2按播放次数排序，不提供参数默认按系统指定顺序；<br />
+isasc=1正序，2倒叙，不提供参数或者其他参数按正序排序（从小到大）<br />
+<br />
+获取看一看内容===========================================<br />
+@(ViewBag.httpUrl)Video/GetVideo<br />
+{"myid":"1"}<br /><br />
+
+------************************************------<br />
+获取教师视频类别===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/ClassList<br />
+获取教师视频课程类别===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/LessonList<br />
+获取教师视频列表===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/VideoList<br />
+{"classid":"1","lessonid":"1","currentpage":"1","pagesize":"10","orderby":"","isasc":"1"}<br />
+说明：<br />
+classid=类别；1课程讲解,2公开课,3教育技能，4操作说明；<br />
+lessonid=课程类别(1芮卡国学……)<br />
+教师首屏调用参数（推荐）：{"currentpage":"1","pagesize":"10"}<br />
+orderby=1按日期排序，2按播放次数排序，3按指定顺序；不提供参数默认按推荐级别顺序；<br />
+isasc=1正序，2倒叙，不提供参数或者其他参数按正序排序（从小到大）<br />
+获取视频内容===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/GetVideo<br />
+{"myid":"1"}<br />
+获取教师社区图文大类===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/ArticleClassList<br />
+获取教师社区图文列表===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/ArticleList<br />
+{"classid":"1","currentpage":"1","pagesize":"10"}<br />
+获取教师社区图文内容===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/ArticleContent<br />
+{"articleid":"1"}<br />
+添加评论---教师社区图文内容===========================================<br />
+@(ViewBag.httpUrl)TeacherVideo/AddComment<br />
+{"articleid":"1","content";""}<br />
+<br />
+------************************************------<br />
+获取发现栏目图文列表===========================================<br />
+@(ViewBag.httpUrl)Discover/ArticleList<br />
+{"currentpage":"1","pagesize":"10"}<br />
+获取发现栏目文章内容===========================================<br />
+@(ViewBag.httpUrl)Discover/ArticleContent<br />
+{"articleid":"1"}<br />
+添加发现栏目文章内容===========================================<br />
+@(ViewBag.httpUrl)Discover/AddArticleContent<br />
+{"articletitle":"标题","content":"内容","images":"","videos":""}<br />
+获取发现评论列表===========================================<br />
+@(ViewBag.httpUrl)Discover/CommentList<br />
+{"articleid":"1","currentpage":"1","pagesize":"10"}<br />
+添加发现评论===========================================<br />
+@(ViewBag.httpUrl)Discover/AddComment<br />
+{"articleid":"1","content":""}<br /><br />
+------************************************------<br />
+添加意见反馈===========================================<br />
+@(ViewBag.httpUrl)Suggestion/AddSuggestion<br />
+{"contact":"QQ:12345678","content":""}<br />
+说明：<br />
+contact=联系方式；<br />
+content=意见内容；<br /><br />
+------************************************------<br />
+添加收藏===========================================<br />
+@(ViewBag.httpUrl)Collect/AddCollect<br />
+{"classid":"1","aboutid":""}<br />
+说明：<br />
+classid=1点一点；2听一听；3看一看；4课程讲解；5幼儿公开课；6教育技能；7操作说明；8教师社区；9精彩瞬间;<br />
+删除收藏===========================================<br />
+@(ViewBag.httpUrl)Collect/DelCollectItem<br />
+{"collectid":"1"}<br />
+获取收藏列表===========================================<br />
+@(ViewBag.httpUrl)Collect/GetCollectList<br />
+{"classid":"1","currentpage":"1","pagesize":"10"}<br />
+说明：<br />
+classid=1点一点；2听一听；3看一看；4课程讲解；5幼儿公开课；6教育技能；7操作说明；8教师社区；9精彩瞬间<br />
+classid不提交或者为空，获得全部收藏<br />
+<br /><br />
+------************************************------<br />
+动态--获取自己在精彩瞬间发布的内容列表===========================================<br />
+@(ViewBag.httpUrl)Discover/PersonalList<br />
+{"currentpage":"1","pagesize":"10"}<br />
+动态--获取自己录制的音频===========================================<br />
+@(ViewBag.httpUrl)Audio/PersonalAudioList<br />
+{"currentpage":"1","pagesize":"10"}<br />
+动态--自己录制的音频状态设置为公开发布===========================================<br />
+@(ViewBag.httpUrl)Audio/PublishAudio<br />
+{"audioid":"1","operate":"1"}<br />
+说明：<br />
+operate=0非公开；1公开发布<br />
+<br />
+动态--删除音频===========================================<br />
+@(ViewBag.httpUrl)Audio/DeleteItem<br />
+{"del":"all"}<br />
+动态--删除精彩内容===========================================<br />
+@(ViewBag.httpUrl)Discover/DeleteItem<br />
+{"del":"all"}<br />
+------************************************------<br />
+扫码-开通课件/注册学一学电子书==========================================<br />
+@(ViewBag.httpUrl)ScanCode/Scan<br />
+{"codestr":"@(ViewBag.WebUrl)scan/1/asdfsdf23423werq523423"}<br />
+
+<br />
+------************************************------<br />
+获得游戏列表==========================================<br />
+@(ViewBag.httpUrl)Game/GetGameList<br />
+{"classid":"","currentpage":"1","pagesize":"10"}<br />
+<br />
+------************************************------<br />
+获得芮卡微讯列表==========================================<br />
+@(ViewBag.httpUrl)Discover/GetWeiXunList<br />
+{"currentpage":"1","pagesize":"5"}<br />
+------************************************------<br />
+分享网址==========================================<br />
+@(ViewBag.WebUrl)share/{classtype}/{aboutid}<br />
+{"classtype":"1","aboutid":"5"}<br />
+说明：<br />
+classtype=1点一点；2听一听；3看一看；4课程讲解；5幼儿公开课；6教育技能；7操作说明；8教师社区；9精彩瞬间;<br />
+aboutid=内容主键ID<br /><br />
+------************************************------<br />
+推荐给好友网址==========================================<br />
+@(ViewBag.WebUrl)Home/DownLoad<br /><br />
+帮助中心网址==========================================<br />
+@(ViewBag.WebUrl)Home/Help<br /><br />
+------************************************------<br />
+阅读/播放次数加一==========================================<br />
+@(ViewBag.httpUrl)audio/TimesAdd<br />
+{"classid":"2","aboutid":"10"}<br />
+说明：<br />
+classtype=1点一点；2听一听；3看一看；4课程讲解；5幼儿公开课；6教育技能；7操作说明；8教师社区；9精彩瞬间;12用户录音秀<br />

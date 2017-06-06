@@ -1,0 +1,100 @@
+﻿@using CheFuZi.Function;
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+    //
+    string[] Pagekeys = { "CurrentPage", "Del" };
+    ViewBag.myPageUrl = FunctionClass.UrlString(Pagekeys);
+    string[] Delkeys = { "Del" };
+    ViewBag.myDelUrl = FunctionClass.UrlString(Delkeys);
+}
+<div class="container-fluid TablePageContent">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-success" href="AudioAdd?AlbumId=@ViewBag.AlbumId"><span class="glyphicon glyphicon-plus"></span> 添加</a>
+        </div>
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th style="width:40%;">名称</th>
+                <th style="width:20%;">排序</th>
+                <th style="width:40%;">操作</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.DataList != null)
+            {
+                foreach (var itemData in ViewBag.DataList)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn" onclick="playmusic('@(StaticVarClass.myDomain)@(itemData.AudioUrl)','@itemData.AudioTitle')">
+                                <span class="glyphicon glyphicon-play-circle"></span>  @itemData.AudioTitle
+                            </a>
+                       </td>
+                        <td>@itemData.OrderBy</td>
+                        <td>
+                            <a class="btn  btn-toolbar" href="AudioAdd?myid=@itemData.AudioId">
+                                <span class="glyphicon glyphicon-wrench"></span> 修改
+                            </a>
+                            <a class="btn  btn-toolbar" onclick="delcfm('@ViewBag.myDelUrl&del=@itemData.AudioId')">
+                                <span class="glyphicon glyphicon-remove"></span> 删除
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!--分页 Start-->
+@Html.Partial("../Shared/_PagePartial");
+<!--分页 End-->
+<!--删除确认-->
+@Html.Partial("../Shared/_DelConfirmPartial");
+
+<!-- 音乐不放 -->
+<div class="modal fade" id="playModel">
+    <div class="modal-dialog">
+        <div class="modal-content message_align">
+            <div class="modal-header">
+                <button type="button" id="closePlay2" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="musicid">音频名称</h4>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <audio id="playurl" src="" controls="controls">
+                        您的浏览器不支持
+                        <br />
+                    </audio>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="closePlay" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script type="text/javascript">
+    function playmusic(url, titlename) {
+        var audio = $("#playurl")[0];
+        audio.src = url;//给会话中的隐藏属性URL赋值
+        audio.play();
+        $('#musicid').text(titlename);
+        $('#playModel').modal();
+    }
+    $('#closePlay2').click(function (e) {
+        var audio = $("#playurl")[0];
+        audio.pause();
+    });
+    $('#closePlay').click(function (e) {
+        var audio = $("#playurl")[0];
+        audio.pause();
+    });
+</script>

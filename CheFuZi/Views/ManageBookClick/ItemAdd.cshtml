@@ -1,0 +1,77 @@
+﻿@using CheFuZi.Function
+@model CheFuZi.Models.BookClickModel
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+</div>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.BookID)
+            @Html.HiddenFor(model => model.Operate)
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">类别：</label>
+            <div class="controls">
+                <select name="BookClassID" id="BookClassID" class="form-control FormWidth-m">
+                    @{
+    if (ViewBag.DataListClass != null)
+    {
+        foreach (var myItem in ViewBag.DataListClass)
+        {
+            <option value="@myItem.BookClassID" @if (@Model.BookClassID == myItem.BookClassID) { @MvcHtmlString.Create("selected")          }>
+                @myItem.BookClassName
+            </option>
+        }
+    }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookName)
+            @Html.ValidationMessageFor(model => model.BookName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BookName, new { @class = "form-control FormWidth-m" })
+        </div>
+        <div class="form-horizontal">
+            <label>横屏：</label><input type="radio" name="ScreenH" value="true" @if (Model.ScreenH) { @MvcHtmlString.Create("checked") } />
+            <label>竖屏：</label><input type="radio" name="ScreenH" value="false" @if (!Model.ScreenH) { @MvcHtmlString.Create("checked")  } />
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookOnlineUrl)
+        </div>
+        <div class="editor-field">
+            @StaticVarClass.BookClickResourceUrl
+            @Html.TextBoxFor(model => model.BookOnlineUrl, new { @class = "form-control FormWidth-l" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderBy)
+            @Html.ValidationMessageFor(model => model.OrderBy)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OrderBy, new { @class = "form-control FormWidth-ss", @type = "number" })
+        </div>
+
+        <div class="editor-field" style="position:relative;top:10px;">
+            <button type="submit" class="btn btn-primary FormWidth-s">@ViewBag.ButtonValue</button>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+}

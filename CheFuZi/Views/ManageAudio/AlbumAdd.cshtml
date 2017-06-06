@@ -1,0 +1,80 @@
+﻿@model CheFuZi.Models.AudioAlbumModel
+
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+</div>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-field ">
+            @Html.HiddenFor(model => model.AlbumId)
+            @Html.HiddenFor(model => model.Operate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AlbumTitle)
+            @Html.ValidationMessageFor(model => model.AlbumTitle)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.AlbumTitle, new { @class = "form-control FormWidth-m" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Anchor)
+            @Html.ValidationMessageFor(model => model.Anchor)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Anchor, new { @class = "form-control FormWidth-s" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AlbumImage)
+            @Html.ValidationMessageFor(model => model.AlbumImage)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.AlbumImage, new { @class = "form-control FormWidth-l" })
+            <div id="buttonUpload">
+
+            </div>
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AlbumDescrib)
+            @Html.ValidationMessageFor(model => model.AlbumDescrib)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.AlbumDescrib, new { @class = "form-control FormWidth-x", @rows = "7" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderBy)
+            @Html.ValidationMessageFor(model => model.OrderBy)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OrderBy, new { @class = "form-control FormWidth-ss", @type = "number" })
+        </div>
+        <div class="editor-field" style="position:relative;top:10px;">
+            <button type="submit" class="btn btn-primary FormWidth-s">@ViewBag.ButtonValue</button>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@{
+    ViewBag.UpLoadSize = 3;
+    ViewBag.UpLoadFileType = "*.jpg;*.png;*.jpeg;*.gif";
+    ViewBag.UpLoadButtonId = "buttonUpload";
+    ViewBag.UpLoadTextBoxId = "AlbumImage";
+    ViewBag.JsUploadFun = "upload";
+}
+@Html.Partial("../Shared/_UpLoadPartial");

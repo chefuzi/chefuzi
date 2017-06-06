@@ -1,0 +1,79 @@
+﻿@using CheFuZi.Function;
+@{
+    ViewBag.Title = "芮卡家园App下载";
+    Layout = "~/Views/Shared/_Mobile2.cshtml";
+}
+@section style {
+    <style type="text/css">
+        body {
+            background-color: #EDEDED;
+        }
+    </style>
+}
+
+@Html.Partial("_PartialIsWeiXinBrowser")
+<div class="container-fluid">
+    <div style="height:20px;padding:10px;"></div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="text-center">
+                <img src="~/Images/logo_big.png" style="height:80px;" />
+            </div>
+            <div class="text-center" style="color:#01b554;letter-spacing:3px;">
+                <h4><strong>芮卡家园APP</strong></h4>
+            </div>
+            <div class="text-center" style="font-size:12px;font-weight:bold;line-height:20px;letter-spacing:3px; color:#f19ec2;">
+                <p>海量、优质、原创的幼儿资源</p>
+                <p>
+                    全方位、专业化的课程培训视频
+                </p>
+                <p> 精彩、有趣、个性的录音功能</p>
+            </div>
+            <div class="text-center" style="padding:10px;">
+                @{
+
+                    if (FunctionClass.CheckPhoneSys())
+                    {
+                        <a href="@StaticVarClass.AppDownLoadUrlIOS" class="btn  btn-lg  btn-block downLoadButton" style="background-color:#01B554;width:200px; margin:auto;"><span class="glyphicon glyphicon-apple"></span> 立即下载</a>
+                    }
+                    else
+                    {
+
+                        <a href="@StaticVarClass.AppDownLoadUrlAndroid" id="downLoadAppButtun" class="btn  btn-lg  btn-block downLoadButton" style="background-color:#01B554;width:200px; margin:auto;"><span class="glyphicon glyphicon-download-alt"></span> 立即下载</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="page-header text-center">
+            <h5><strong style="color:#373737;">APP描述</strong></h5>
+        </div>
+        <div class="panel-body">
+            <div class="text-left" style="font-size:12px;text-indent:2em;line-height:20px;letter-spacing:3px; color:#464444;">
+                <p>“芮卡家园”是针对幼儿、教师和家长量身打造的一款移动端家园互动平台。生动有趣的海量优质幼教资源 的免费提供，让孩子们的感知世界能够得到有效滋养；家园互动式的＂课程在线＂体验，更为幼儿园和家庭 搭建了一座共育宝宝的畅通桥梁；一系列芮卡师资培训免费视频课程和幼师素材资源，为幼儿园教师专业成 长搭建了强有力的平台；“听一听”版块中“一键录音”的功能，一改幼儿被动视听的局面，让幼儿主动开 口说，从此喜欢上语言。</p>
+                <p>愿“芮卡家园”多样化的服务陪伴各级园所、家长和幼儿共同成长！</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="text-center">
+        <p><img src="~/Images/download1.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download2.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download3.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download4.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download5.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download6.jpg" style="width:100%;" /></p>
+        <div style="height:15px;"></div>
+        <p><img src="~/Images/download7.jpg" style="width:100%;" /></p>
+
+    </div>
+    <div style="height:30px;"></div>
+</div>

@@ -1,0 +1,29 @@
+﻿<div id="downLoadAppTip" style="margin:0px;padding:0px;top:-2px;left:-2px;right:0px;display:none;">
+    <img src="~/Images/weixinbrowser.png" style="width:100%;" />
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var isWeiXinBrowser = false;
+        $("#downLoadAppButtun").click(function () {
+            var isWeiXinBrowser = isWeiXin();
+            if (isWeiXinBrowser) {
+                $("#downLoadAppTip").show(1000);
+            }
+        });
+        $("#downLoadAppTip").click(function () {
+
+            $("#downLoadAppTip").hide(1000);
+        });
+        function isWeiXin() {
+            
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                isWeiXinBrowser= true;
+            } else {
+                isWeiXinBrowser = false;
+            }
+            return isWeiXinBrowser;
+        }
+    });
+
+</script>

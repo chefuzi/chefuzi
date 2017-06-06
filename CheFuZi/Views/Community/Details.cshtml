@@ -1,0 +1,105 @@
+﻿@model CheFuZi.Models.TeacherArticleModel
+@{
+    ViewBag.Title = @Model.ArticleTitle;
+    Layout = "~/Views/Shared/_Mobile2.cshtml";
+}
+<div class="container-fluid">
+    <div class="page-header">
+        <h3 class="text-center">@ViewBag.Title</h3>
+        <h4 class="text-center">@Model.ArticleAuthor</h4>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6">
+                <h5><small>@Model.AddDate.ToString("yyyy-MM-dd HH:mm")</small></h5>
+            </div>
+            <div class="col-xs-3 col-sm-3 text-right">
+                <h5><small><span class="glyphicon glyphicon-eye-open"></span> @Model.ReadTimes</small></h5>
+            </div>
+            <div class="col-xs-3 col-sm-3 text-right">
+                <h5><small><img src="~/Images/commentCount.png"> @Model.CommentCount</small></h5>
+            </div>
+        </div>
+    </div>
+
+
+    @if (!String.IsNullOrWhiteSpace(Model.ArticleVideo))
+    {
+        <p class="text-center">
+            <video autoplay="autoplay" src="@Model.ArticleVideo" controls="controls">
+                您的浏览器不支持 【视频播放】 标签。
+            </video>
+        </p>
+        <div style="height:10px;">
+        </div>
+    }
+    <div class="myContentText">
+        @MvcHtmlString.Create(Model.ArticleContent)
+    </div>
+    <div style="height:20px;">
+    </div>
+    <div id="commentlist">
+    </div>
+    <div style="height:50px;">
+    </div>
+
+    <!---->
+    <input type="hidden" id="articleid" value="@Model.ArticlId" />
+    <input type="hidden" id="currentpage" value="1" />
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            var pagecount = 1;
+            var pagenum = 2;
+            LoadData();
+            //
+            function LoadData() {
+                $.ajax({
+                    type: "Post",
+                    url: "/Community/CommentList",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(GetJsonData()),//查询条件
+                    success: function (data) {
+                        //
+                        $.each(data, function (i, item) {
+                            pagecount = item.PageCount;
+                            $("#commentlist").append("<div class='panel panel-success'><div class='panel-body'>" +
+                                "<div class='row commentheadcss'><div class='col-xs-6 col-sm-6 '><div class='row'><div class='col-xs-3 col-sm-3 '>" +
+                                "<img src='" +
+                                item.HeadImage +
+                                "'/></div><div class='col-xs-9 col-sm-9'><p>" +
+                                item.NickName +
+                                "</p><p>" +
+                                item.TimeDate +
+                                "</p></div></div></div><div class='col-xs-6 col-sm-6 text-right'><p>" +
+                                item.FloorNum +
+                                "楼</p><p>" +
+                                item.DateDate +
+                                "</p></div></div>" +
+                            item.Detail +
+                            "</div></div>");
+                        });
+                    },
+                    error: function () { alert("服务器异常") }
+                }
+                );
+            }//
+            function GetJsonData() {
+                var json = {
+                    "articleid": $("#articleid").val(),
+                    "currentpage": $("#currentpage").val()
+                };
+                return json;
+            }
+            //
+            $(window).bind("scroll", function () {
+                if ($(document).scrollTop() + $(window).height() > $(document).height() - 10 && pagenum <= pagecount) {
+                    $("#currentpage").val(pagenum);
+                    LoadData();
+                    pagenum++;
+
+                }
+            });
+            //
+        })
+
+    </script>
+</div>

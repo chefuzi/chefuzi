@@ -1,0 +1,268 @@
+﻿@using CheFuZi.Function;
+@{
+    string listenMenuOpen = "";
+    string bookStudyMenuOpen = "";
+    string lookMenuOpen = "";
+    string bookClickMenuOpen = "";
+    string teacherMenuOpen = "";
+    string gameMenuOpen = "";
+    string discoverMenuOpen = "";
+    string userMenuOpen = "";
+    
+   
+    //
+    string controllerName = "";//栏目名成
+    //
+    string temControllerName = ViewContext.RouteData.Values["controller"].ToString().ToLower();
+
+    switch (temControllerName)
+    {
+        case "manageaudio":
+            listenMenuOpen = " in";
+            controllerName = "听一听";
+            break;
+        case "managebookstudy":
+        case "manageqrcode":
+            bookStudyMenuOpen = " in";
+            controllerName = "学一学";
+            break;
+        case "managevideo":
+            lookMenuOpen = " in";
+            controllerName = "看一看";
+            break;
+        case "managebookclick":
+            bookClickMenuOpen = " in";
+            controllerName = "点一点";
+            break;
+        case "managegame":
+            gameMenuOpen = " in";
+            controllerName = "玩一玩";
+            break;
+        case "manageteacher":
+            teacherMenuOpen = " in";
+            controllerName = "教师专区";
+            break;
+        case "managediscover":
+            discoverMenuOpen = " in";
+            controllerName = "发现栏目";
+            break;
+        case "manageuser":
+            userMenuOpen = " in";
+            controllerName = "用户管理";
+            break;
+        default: 
+            listenMenuOpen = " in";
+            controllerName = "听一听";
+            break;
+    }
+    string MenuHeadCss = "background-color:#3d3d3d;color:#cccccc;height:45px;";
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Default.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script language="javascript" type="text/javascript" src="~/Scripts/public/swfobject.js"></script>
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("cssstyle", required: false)
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" style="width:270px;min-width:270px;" href="#">Ruika365 Manage</div>
+                <div class="navbar-brand">@controllerName</div><span class="navbar-brand glyphicon glyphicon-arrow-right"></span><div class="navbar-brand">@ViewBag.Title</div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">
+                            <span class="glyphicon glyphicon-home"></span>
+                            首页
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                            @User.Identity.Name
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Account/EditPwd">修改密码 <span class="glyphicon glyphicon-pencil"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Account/LogOff">退出系统 <span class="glyphicon glyphicon-log-out"></span></a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-xs-4  col-sm-3 col-md-3 col-lg-2">
+            <ul class="nav  nav-stacked nav-pills">
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseListen" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-music"></span>
+                            听一听
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseListen" class="nav nav-stacked collapse @listenMenuOpen">
+                        <li><a href="/ManageAudio/AlbumList"><span class="glyphicon glyphicon-list"></span> 专辑管理</a></li>
+                        <li><a href="/ManageAudio/UserAudioList"><span class="glyphicon glyphicon-list"></span> 用户上传音频</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseStudy" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-bookmark"></span>
+                            学一学
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseStudy" class="nav nav-stacked collapse @bookStudyMenuOpen">
+                        <li><a href="/ManageBookStudy/ClassList"><span class="glyphicon glyphicon-list-alt"></span> 类别管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageBookStudy/ItemList"><span class="glyphicon glyphicon-list"></span> 图书管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseLook" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-film"></span>
+                            看一看
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseLook" class="nav nav-stacked collapse @lookMenuOpen">
+                        <li><a href="/ManageVideo/ClassList"><span class="glyphicon glyphicon-list-alt"></span> 类别管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageVideo/AlbumList"><span class="glyphicon glyphicon-list"></span> 专辑管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseClick" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-book"></span>
+                            点一点
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseClick" class="nav nav-stacked collapse @bookClickMenuOpen">
+                        <li><a href="/ManageBookClick/ClassList"><span class="glyphicon glyphicon-list-alt"></span> 类别管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageBookClick/ItemList"><span class="glyphicon glyphicon-list"></span> 图书管理</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseGame" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-baby-formula"></span>
+                            玩一玩
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseGame" class="nav nav-stacked collapse @gameMenuOpen">
+                        <li><a href="/ManageGame/ItemList"><span class="glyphicon glyphicon-list"></span> 游戏管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTeacherCommu" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-blackboard"></span>
+                            教师专区
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseTeacherCommu" class="nav nav-stacked collapse @teacherMenuOpen">
+                        <li><a href="/ManageTeacher/TeacherVideoList?ClassId=1"><span class="glyphicon glyphicon-list"></span> 芮卡课程讲解</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageTeacher/TeacherVideoList?ClassId=2"><span class="glyphicon glyphicon-list"></span> 幼儿公开课</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageTeacher/TeacherVideoList?ClassId=3"><span class="glyphicon glyphicon-list"></span> 教育技能</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageTeacher/TeacherVideoList?ClassId=4"><span class="glyphicon glyphicon-list"></span> 芮卡多媒体操作说明</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/ManageTeacher/TeacherCommunityClassList"><span class="glyphicon glyphicon-th-large"></span> 教师社区文章类别</a></li>
+                        <li><a href="/ManageTeacher/TeacherCommunityList"><span class="glyphicon glyphicon-th"></span> 教师社区文章管理</a></li>
+                        <li><a href="/ManageTeacher/CommentList"><span class="glyphicon glyphicon-comment"></span> 教师社区评论管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseDiscover" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-zoom-in"></span>
+                            发现栏目
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseDiscover" class="nav nav-stacked collapse @discoverMenuOpen">
+                        <li><a href="/ManageDiscover/ItemList"><span class="glyphicon glyphicon-th-large"></span> 图文管理</a></li>
+                        <li><a href="/ManageDiscover/CommentList"><span class="glyphicon glyphicon-comment"></span> 评论管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseUser" style="@MenuHeadCss">
+                        <h4 class="panel-title">
+                            <span class="glyphicon glyphicon-user"></span>
+                            用户管理
+                        </h4>
+                    </a>
+                </li>
+                <li>
+                    <ul id="collapseUser" class="nav nav-stacked collapse @userMenuOpen">
+                        <li><a href="/ManageUser/UserList"><span class="glyphicon glyphicon-th"></span> 用户管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="col-xs-8  col-sm-9 col-md-9 col-lg-10">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" style="height:50px;"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model CheFuZi.Models.ShareModel
+@{
+    ViewBag.Title = @Model.AboutTitle;
+    Layout = "~/Views/Shared/_MobileClick.cshtml";
+}
+<div style="height:20px;">
+</div>
+@if (Model.ClassType == 1)
+{
+    <div class="panel panel-default" style="min-height:350px;">
+        <div class="panel-body text-center">
+            <h3 class="panel-title">@ViewBag.Title</h3>
+            <div style="height:20px;">
+            </div>
+            <div style="height:1px;background-color:#65d79a;">
+            </div>
+            <div style="height:20px;">
+            </div>
+            @if (!String.IsNullOrWhiteSpace(Model.AboutImages))
+            {
+                <div class="text-center">
+                    <img style="clear: both;display: block;margin:auto;height:200px;" src="@Model.AboutImages" />
+                </div>
+            }
+
+        </div>
+    </div>
+}
+<div style="height:20px;">
+</div>

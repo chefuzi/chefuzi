@@ -1,0 +1,44 @@
+﻿html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+.TablePageContent {
+    min-height:500px;
+    min-width:500px;
+}
+.FormWidth-auto {
+    min-width:300px;
+    max-width:400px;
+}
+.FormWidth-ss {
+    width:80px;
+}
+.FormWidth-s {
+    width:200px;
+}
+.FormWidth-m {
+    width:400px;
+}
+.FormWidth-l {
+    width:600px;
+}
+.FormWidth-x {
+    width:800px;
+}
+.field-validation-error {
+    color:red;
+}
+.validation-summary-errors {
+    color:red;
+}
+.foot-wrap{
+    margin: 0;
+	background-color:#808080;
+	padding:20px;
+}
+

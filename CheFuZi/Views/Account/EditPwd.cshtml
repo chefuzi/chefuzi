@@ -1,0 +1,14 @@
+﻿@model CheFuZi.Models.EditPasswordModel
+
+@{
+    ViewBag.Title = "管理帐户";
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+
+
+@Html.Partial("_ChangePasswordPartial")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

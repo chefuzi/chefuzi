@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "APP下载";
+    Layout = "~/Views/Shared/_MobileClick.cshtml";
+}
+<div style="height:30px;"></div>
+<div class="panel panel-default text-center">
+    <div class="panel-body">
+        <div class="page-header" style="max-width:670px;min-height:200px; margin:auto;">
+            <h4 class="text-left">@ViewBag.Message</h4>
+
+            @if (ViewBag.CoverImage != null)
+            {
+                <div class="text-center">
+                    <img class="img-responsive" style="clear: both;display: block;margin:auto;" src="@ViewBag.CoverImage" />
+                </div>
+            }
+            <div style="height:30px;"></div>
+
+            <p class="text-right">请下载并使用“芮卡家园”APP扫码！</p>
+        </div>
+    </div>
+</div>

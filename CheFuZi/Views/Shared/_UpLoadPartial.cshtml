@@ -1,0 +1,26 @@
+﻿<script language="javascript" type="text/javascript">
+
+    $(document).ready(function () {
+        var params = {
+            serverUrl: "/FileUploadWeb/FileUpLoad",	//上传响应页面(必须设置)
+            jsFunction: "@ViewBag.JsUploadFun",			//上传成功后回调JS
+            maxFileSize: 1024 * 1000 * @ViewBag.UpLoadSize,
+            maxAllFileSize: 1024 * 1000 * @ViewBag.UpLoadSize,
+            minAllFileSize: 0,
+            maxFileCount: 1,
+            filter: "@ViewBag.UpLoadFileType"			//上传文件类型限制
+        }
+        swfobject.embedSWF("/Content/public/uploadFile.swf", "@ViewBag.UpLoadButtonId", "60", "30", "9.0.0", "/Content/public/expressInstall.swf", params);
+    });
+
+    function @(ViewBag.JsUploadFun)(type, str) {
+        if (type == "upload_error") {
+            str = str.replace("1B", "@ViewBag.UpLoadSize MB");
+            alert(str);
+            return false;
+        }
+        if (type == "upload_complete") {
+            $("#@ViewBag.UpLoadTextBoxId").val(str);
+        }
+    };
+</script>

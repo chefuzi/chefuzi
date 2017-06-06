@@ -1,0 +1,54 @@
+﻿@using CheFuZi.Function;
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/Mobile.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    @Html.Partial("_PartialIsWeiXinBrowser")
+    <div class="container-fluid headDown">
+        <div class="row">
+            <div class="col-xs-6  col-sm-3">
+                <img src="~/Images/logo.png" /><span style="color:#393939;font-weight:bold;font-size:small;">芮卡家园APP</span>
+            </div>
+            <div class="col-xs-6 col-sm-offset-6 col-sm-3 text-right">
+                @{
+
+                    if (FunctionClass.CheckPhoneSys())
+                    {
+                        <a href="@StaticVarClass.AppDownLoadUrlIOS" class="btn  btn-lg  btn-block downLoadButton" style="background-color:#00B22D;color:#ffffff;"><span class="glyphicon glyphicon-apple"></span> 立即下载</a>
+                    }
+                    else
+                    {
+                        <a href="@StaticVarClass.AppDownLoadUrlAndroid" id="downLoadAppButtun" class="btn  btn-lg  btn-block downLoadButton" style="background-color:#00B22D;color:#ffffff;"><span class="glyphicon glyphicon-download-alt"></span> 立即下载</a>
+
+                    }
+}
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        @RenderBody()
+
+
+    </div>
+    <script type="text/javascript" src="~/Scripts/myScripts/mobilepublic.js"></script>
+</body>
+</html>

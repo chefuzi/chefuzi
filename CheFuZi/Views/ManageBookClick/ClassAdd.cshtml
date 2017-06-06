@@ -1,0 +1,46 @@
+﻿@model CheFuZi.Models.BookClickClassModel
+
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+</div>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-field ">
+            @Html.HiddenFor(model => model.BookClassID)
+            @Html.HiddenFor(model => model.Operate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookClassName)
+            @Html.ValidationMessageFor(model => model.BookClassName)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.BookClassName, new { @class = "form-control FormWidth-m" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderBy)
+            @Html.ValidationMessageFor(model => model.OrderBy)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OrderBy, new { @class = "form-control FormWidth-ss", @type = "number" })
+        </div>
+        <div class="editor-field" style="position:relative;top:10px;">
+            <button type="submit" class="btn btn-primary FormWidth-s">@ViewBag.ButtonValue</button>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

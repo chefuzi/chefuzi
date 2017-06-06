@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe07e66d87794428986a10db1c66e604" Name="Diagram1" >
+        <EntityTypeShape EntityType="chefuzi_dataModel.Article" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Article_Category" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Article_Comment" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_Area_City" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_Area_District" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_Area_Province" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_IdKey" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_IdTable" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_Status" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.Sys_Suggestion" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_Collect" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_LoginCategory" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_PhoneCheckCode" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_Roles" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_UserInfo" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_UserLogin" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="chefuzi_dataModel.User_UserName" Width="1.5" PointX="10.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

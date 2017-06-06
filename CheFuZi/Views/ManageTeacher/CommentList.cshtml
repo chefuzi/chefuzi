@@ -1,0 +1,52 @@
+﻿@using CheFuZi.Function;
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+    //
+    string[] Pagekeys = { "CurrentPage", "Del" };
+    ViewBag.myPageUrl = FunctionClass.UrlString(Pagekeys);
+    string[] Delkeys = { "Del" };
+    ViewBag.myDelUrl = FunctionClass.UrlString(Delkeys);
+}
+<div class="container-fluid TablePageContent">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+        </div>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th style="width:50%;">内容</th>
+                <th style="width:15%;">注册手机</th>
+                <th style="width:20%;">日期</th>
+                <th style="width:15%;">操作</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.DataList != null)
+            {
+                foreach (var itemData in ViewBag.DataList)
+                {
+                    <tr>
+                        <td>@itemData.Detail</td>
+                        <td>@itemData.MobilePhone</td>
+                        <td>@itemData.AddDate</td>
+                        <td>
+                            <a class="btn  btn-toolbar" onclick="delcfm('@ViewBag.myDelUrl&del=@itemData.CommentId')">
+                                <span class="glyphicon glyphicon-remove"></span> 删除
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!--分页 Start-->
+@Html.Partial("../Shared/_PagePartial");
+<!--分页 End-->
+<!--删除确认-->
+@Html.Partial("../Shared/_DelConfirmPartial");
+

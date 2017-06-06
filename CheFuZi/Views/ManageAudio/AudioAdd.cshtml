@@ -1,0 +1,80 @@
+﻿@model CheFuZi.Models.AudioListModel
+@{
+    ViewBag.Title = ViewBag.Headline;
+    Layout = "~/Views/Shared/_Manage.cshtml";
+}
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group">
+        <a class="btn btn-default" onclick="javascript: window.history.back(); " href="#"><span class="glyphicon glyphicon-arrow-left"></span> 返回</a>
+    </div>
+</div>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.AlbumId)
+            @Html.HiddenFor(model => model.AudioId)
+            @Html.HiddenFor(model => model.Operate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AudioTitle)
+            @Html.ValidationMessageFor(model => model.AudioTitle)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.AudioTitle, new { @class = "form-control FormWidth-m" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AudioUrl)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.AudioUrl, new { @class = "form-control FormWidth-l" })
+            <div id="buttonUpload">
+
+            </div>
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeSeconds)
+            @Html.ValidationMessageFor(model => model.TimeSeconds)
+        </div>
+        <div class="editor-field">
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.TimeMinute, new {  @type = "number", @style = "width:100px;" }) 分
+                @Html.TextBoxFor(model => model.TimeSeconds, new {  @type = "number", @style = "width:100px;" }) 秒
+                 </div>
+            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderBy)
+            @Html.ValidationMessageFor(model => model.OrderBy)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.OrderBy, new { @class = "form-control FormWidth-ss", @type = "number" })
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AudioWords)
+            @Html.ValidationMessageFor(model => model.AudioWords)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.AudioWords, new { @class = "form-control FormWidth-x", @rows = "7" })
+        </div>
+
+        <div class="editor-field" style="position:relative;top:10px;">
+            <button type="submit" class="btn btn-primary FormWidth-s">@ViewBag.ButtonValue</button>
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@{
+    ViewBag.UpLoadSize = 30;
+    ViewBag.UpLoadFileType = "*.mp3";
+    ViewBag.UpLoadButtonId = "buttonUpload";
+    ViewBag.UpLoadTextBoxId = "AudioUrl";
+    ViewBag.JsUploadFun = "upload";
+}
+@Html.Partial("../Shared/_UpLoadPartial");
