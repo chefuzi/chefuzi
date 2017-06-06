@@ -4,210 +4,210 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="chefuzi_dataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="ArticlId" />
-          </Key>
-          <Property Name="ArticlId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CateId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="bigint" />
-          <Property Name="ArticleTitle" Type="nvarchar" MaxLength="500" />
-          <Property Name="ArticleAuthor" Type="nvarchar" MaxLength="500" />
-          <Property Name="ArticleDate" Type="datetime" />
-          <Property Name="Reference" Type="varchar" MaxLength="150" />
-          <Property Name="ArticleSummary" Type="nvarchar" MaxLength="1000" />
-          <Property Name="ArticleContent" Type="ntext" />
-          <Property Name="ArticleImages" Type="varchar" MaxLength="1000" />
-          <Property Name="ArticleVideo" Type="varchar" MaxLength="500" />
-          <Property Name="AddDate" Type="datetime" Nullable="false" />
-          <Property Name="ReadTimes" Type="int" Nullable="false" />
-          <Property Name="CommentCount" Type="int" />
-          <Property Name="PraiseCount" Type="int" Nullable="false" />
-          <Property Name="OrderBy" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Article_Category">
-          <Key>
-            <PropertyRef Name="CateId" />
-          </Key>
-          <Property Name="CateId" Type="int" Nullable="false" />
-          <Property Name="ParentId" Type="int" Nullable="false" />
-          <Property Name="CateTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CateImage" Type="varchar" MaxLength="500" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
-          <Property Name="AddDate" Type="datetime" Nullable="false" />
-          <Property Name="OrderBy" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Article_Comment">
-          <Key>
-            <PropertyRef Name="CommentId" />
-          </Key>
-          <Property Name="CommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AboutId" Type="bigint" />
-          <Property Name="MobilePhone" Type="char" MaxLength="11" />
-          <Property Name="NickName" Type="varchar" MaxLength="100" />
-          <Property Name="Detail" Type="nvarchar(max)" />
-          <Property Name="AddDate" Type="datetime" />
-          <Property Name="Status" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Sys_Area_City">
-          <Key>
-            <PropertyRef Name="CityId" />
-          </Key>
-          <Property Name="CityId" Type="int" Nullable="false" />
-          <Property Name="CityName" Type="varchar" MaxLength="50" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Phone" Type="varchar" MaxLength="4" />
-          <Property Name="ProvinceID" Type="int" Nullable="false" />
-          <Property Name="OrderBy" Type="bigint" />
-        </EntityType>
-        <EntityType Name="Sys_Area_District">
-          <Key>
-            <PropertyRef Name="DistrictId" />
-          </Key>
-          <Property Name="DistrictId" Type="int" Nullable="false" />
-          <Property Name="DistrictName" Type="varchar" MaxLength="50" />
-          <Property Name="CityID" Type="int" Nullable="false" />
-          <Property Name="OrderBy" Type="int" />
-        </EntityType>
-        <EntityType Name="Sys_Area_Province">
-          <Key>
-            <PropertyRef Name="ProvinceId" />
-          </Key>
-          <Property Name="ProvinceId" Type="int" Nullable="false" />
-          <Property Name="ProvinceName" Type="varchar" MaxLength="50" />
-          <Property Name="CountryId" Type="int" Nullable="false" />
-          <Property Name="OrderBy" Type="int" />
-        </EntityType>
-        <EntityType Name="Sys_IdKey">
-          <Key>
-            <PropertyRef Name="IdKey" />
-          </Key>
-          <Property Name="IdKey" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TableId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Sys_IdTable">
-          <Key>
-            <PropertyRef Name="TableId" />
-          </Key>
-          <Property Name="TableId" Type="int" Nullable="false" />
-          <Property Name="TableName" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Sys_Status">
-          <Key>
-            <PropertyRef Name="StatusId" />
-          </Key>
-          <Property Name="StatusId" Type="int" Nullable="false" />
-          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Sys_Suggestion">
-          <Key>
-            <PropertyRef Name="SuggestionId" />
-          </Key>
-          <Property Name="SuggestionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SuggestionTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="AddDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="User_Collect">
-          <Key>
-            <PropertyRef Name="CollectId" />
-          </Key>
-          <Property Name="CollectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="AboutId" Type="bigint" Nullable="false" />
-          <Property Name="AboutTitle" Type="nvarchar" MaxLength="100" />
-          <Property Name="CollectDate" Type="datetime" Nullable="false" />
-          <Property Name="OrderBy" Type="bigint" />
-        </EntityType>
-        <EntityType Name="User_LoginCategory">
-          <Key>
-            <PropertyRef Name="LoginCategoryId" />
-          </Key>
-          <Property Name="LoginCategoryId" Type="int" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="User_PhoneCheckCode">
-          <Key>
-            <PropertyRef Name="MobilePhone" />
-          </Key>
-          <Property Name="MobilePhone" Type="char" MaxLength="11" Nullable="false" />
-          <Property Name="CheckCode" Type="char" MaxLength="5" />
-          <Property Name="AddDate" Type="datetime" />
-          <Property Name="ExpiredDate" Type="datetime" />
-          <Property Name="AlreadCheck" Type="bit" />
-        </EntityType>
-        <EntityType Name="User_Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="int" Nullable="false" />
-          <Property Name="RoleName" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="User_UserInfo">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RealName" Type="varchar" MaxLength="50" />
-          <Property Name="Sex" Type="bit" Nullable="false" />
-          <Property Name="BirthDate" Type="date" />
-          <Property Name="HeadImage" Type="varchar" MaxLength="200" />
-          <Property Name="ProvinceId" Type="int" />
-          <Property Name="ProvinceName" Type="varchar" MaxLength="50" />
-          <Property Name="CityId" Type="int" />
-          <Property Name="CityName" Type="varchar" MaxLength="50" />
-          <Property Name="DistrictId" Type="int" />
-          <Property Name="DistrictName" Type="varchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="100" />
-          <Property Name="AddDate" Type="datetime" />
-          <Property Name="CheckDate" Type="datetime" />
-          <Property Name="Status" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="User_UserLogin">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="PassWord" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="NickName" Type="varchar" MaxLength="50" />
-          <Property Name="RolesIdList" Type="varchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="User_UserName">
-          <Key>
-            <PropertyRef Name="UserName" />
-          </Key>
-          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserId" Type="bigint" Nullable="false" />
-          <Property Name="LoginCategoryId" Type="int" Nullable="false" />
-          <Property Name="AddDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="chefuzi_dataModelStoreContainer">
-          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Article_Category" EntityType="Self.Article_Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Article_Comment" EntityType="Self.Article_Comment" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_Area_City" EntityType="Self.Sys_Area_City" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_Area_District" EntityType="Self.Sys_Area_District" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_Area_Province" EntityType="Self.Sys_Area_Province" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_IdKey" EntityType="Self.Sys_IdKey" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_IdTable" EntityType="Self.Sys_IdTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_Status" EntityType="Self.Sys_Status" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sys_Suggestion" EntityType="Self.Sys_Suggestion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_Collect" EntityType="Self.User_Collect" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_LoginCategory" EntityType="Self.User_LoginCategory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_PhoneCheckCode" EntityType="Self.User_PhoneCheckCode" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_Roles" EntityType="Self.User_Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_UserInfo" EntityType="Self.User_UserInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_UserLogin" EntityType="Self.User_UserLogin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_UserName" EntityType="Self.User_UserName" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="chefuzi_dataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="chefuzi_dataModelStoreContainer">
+    <EntitySet Name="Article" EntityType="chefuzi_dataModel.Store.Article" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_Category" EntityType="chefuzi_dataModel.Store.Article_Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Article_Comment" EntityType="chefuzi_dataModel.Store.Article_Comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Area_City" EntityType="chefuzi_dataModel.Store.Sys_Area_City" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Area_District" EntityType="chefuzi_dataModel.Store.Sys_Area_District" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Area_Province" EntityType="chefuzi_dataModel.Store.Sys_Area_Province" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_IdKey" EntityType="chefuzi_dataModel.Store.Sys_IdKey" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_IdTable" EntityType="chefuzi_dataModel.Store.Sys_IdTable" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Status" EntityType="chefuzi_dataModel.Store.Sys_Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sys_Suggestion" EntityType="chefuzi_dataModel.Store.Sys_Suggestion" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Collect" EntityType="chefuzi_dataModel.Store.User_Collect" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_LoginCategory" EntityType="chefuzi_dataModel.Store.User_LoginCategory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_PhoneCheckCode" EntityType="chefuzi_dataModel.Store.User_PhoneCheckCode" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_Roles" EntityType="chefuzi_dataModel.Store.User_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_UserInfo" EntityType="chefuzi_dataModel.Store.User_UserInfo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_UserLogin" EntityType="chefuzi_dataModel.Store.User_UserLogin" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_UserName" EntityType="chefuzi_dataModel.Store.User_UserName" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticlId" />
+    </Key>
+    <Property Name="ArticlId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CateId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="true" />
+    <Property Name="ArticleTitle" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="ArticleAuthor" Type="nvarchar" Nullable="true" MaxLength="500" />
+    <Property Name="ArticleDate" Type="datetime" Nullable="true" />
+    <Property Name="Reference" Type="varchar" Nullable="true" MaxLength="150" />
+    <Property Name="ArticleSummary" Type="nvarchar" Nullable="true" MaxLength="1000" />
+    <Property Name="ArticleContent" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ArticleImages" Type="varchar" Nullable="true" MaxLength="1000" />
+    <Property Name="ArticleVideo" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="ReadTimes" Type="int" Nullable="false" />
+    <Property Name="CommentCount" Type="int" Nullable="true" />
+    <Property Name="PraiseCount" Type="int" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Category">
+    <Key>
+      <PropertyRef Name="CateId" />
+    </Key>
+    <Property Name="CateId" Type="int" Nullable="false" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="CateTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CateImage" Type="varchar" Nullable="true" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AboutId" Type="bigint" Nullable="true" />
+    <Property Name="MobilePhone" Type="char" Nullable="true" MaxLength="11" />
+    <Property Name="NickName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="Detail" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="AddDate" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sys_Area_City">
+    <Key>
+      <PropertyRef Name="CityId" />
+    </Key>
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="CityName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="ZipCode" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" Nullable="true" MaxLength="4" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="OrderBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Sys_Area_District">
+    <Key>
+      <PropertyRef Name="DistrictId" />
+    </Key>
+    <Property Name="DistrictId" Type="int" Nullable="false" />
+    <Property Name="DistrictName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Sys_Area_Province">
+    <Key>
+      <PropertyRef Name="ProvinceId" />
+    </Key>
+    <Property Name="ProvinceId" Type="int" Nullable="false" />
+    <Property Name="ProvinceName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Sys_IdKey">
+    <Key>
+      <PropertyRef Name="IdKey" />
+    </Key>
+    <Property Name="IdKey" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sys_IdTable">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Name="TableId" Type="int" Nullable="false" />
+    <Property Name="TableName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sys_Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Sys_Suggestion">
+    <Key>
+      <PropertyRef Name="SuggestionId" />
+    </Key>
+    <Property Name="SuggestionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SuggestionTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="User_Collect">
+    <Key>
+      <PropertyRef Name="CollectId" />
+    </Key>
+    <Property Name="CollectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="AboutId" Type="bigint" Nullable="false" />
+    <Property Name="AboutTitle" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="CollectDate" Type="datetime" Nullable="false" />
+    <Property Name="OrderBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="User_LoginCategory">
+    <Key>
+      <PropertyRef Name="LoginCategoryId" />
+    </Key>
+    <Property Name="LoginCategoryId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User_PhoneCheckCode">
+    <Key>
+      <PropertyRef Name="MobilePhone" />
+    </Key>
+    <Property Name="MobilePhone" Type="char" Nullable="false" MaxLength="11" />
+    <Property Name="CheckCode" Type="char" Nullable="true" MaxLength="5" />
+    <Property Name="AddDate" Type="datetime" Nullable="true" />
+    <Property Name="ExpiredDate" Type="datetime" Nullable="true" />
+    <Property Name="AlreadCheck" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="User_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="User_UserInfo">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="Email" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="PassWord" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="RealName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sex" Type="bit" Nullable="false" />
+    <Property Name="BirthDate" Type="datetime" Nullable="true" />
+    <Property Name="HeadImage" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ProvinceId" Type="int" Nullable="true" />
+    <Property Name="ProvinceName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="CityId" Type="int" Nullable="true" />
+    <Property Name="CityName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="DistrictId" Type="int" Nullable="true" />
+    <Property Name="DistrictName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="AddDate" Type="datetime" Nullable="true" />
+    <Property Name="CheckDate" Type="datetime" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_UserLogin">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="PassWord" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="NickName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="RolesIdList" Type="varchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="User_UserName">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="LoginCategoryId" Type="int" Nullable="false" />
+    <Property Name="AddDate" Type="datetime" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="chefuzi_dataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -417,211 +417,210 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="chefuzi_dataModelStoreContainer" CdmEntityContainer="chefuzi_dataEntities" >
-          <EntitySetMapping Name="Article">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Article">
-              <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="PraiseCount" ColumnName="PraiseCount" />
-                <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
-                <ScalarProperty Name="ReadTimes" ColumnName="ReadTimes" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="ArticleVideo" ColumnName="ArticleVideo" />
-                <ScalarProperty Name="ArticleImages" ColumnName="ArticleImages" />
-                <ScalarProperty Name="ArticleContent" ColumnName="ArticleContent" />
-                <ScalarProperty Name="ArticleSummary" ColumnName="ArticleSummary" />
-                <ScalarProperty Name="Reference" ColumnName="Reference" />
-                <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
-                <ScalarProperty Name="ArticleAuthor" ColumnName="ArticleAuthor" />
-                <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CateId" ColumnName="CateId" />
-                <ScalarProperty Name="ArticlId" ColumnName="ArticlId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Article_Category">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Article_Category">
-              <MappingFragment StoreEntitySet="Article_Category">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CateImage" ColumnName="CateImage" />
-                <ScalarProperty Name="CateTitle" ColumnName="CateTitle" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="CateId" ColumnName="CateId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Article_Comment">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Article_Comment">
-              <MappingFragment StoreEntitySet="Article_Comment">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="Detail" ColumnName="Detail" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="AboutId" ColumnName="AboutId" />
-                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_Area_City">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_Area_City">
-              <MappingFragment StoreEntitySet="Sys_Area_City">
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_Area_District">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_Area_District">
-              <MappingFragment StoreEntitySet="Sys_Area_District">
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_Area_Province">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_Area_Province">
-              <MappingFragment StoreEntitySet="Sys_Area_Province">
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
-                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_IdKey">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_IdKey">
-              <MappingFragment StoreEntitySet="Sys_IdKey">
-                <ScalarProperty Name="TableId" ColumnName="TableId" />
-                <ScalarProperty Name="IdKey" ColumnName="IdKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_IdTable">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_IdTable">
-              <MappingFragment StoreEntitySet="Sys_IdTable">
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="TableId" ColumnName="TableId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_Status">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_Status">
-              <MappingFragment StoreEntitySet="Sys_Status">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sys_Suggestion">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.Sys_Suggestion">
-              <MappingFragment StoreEntitySet="Sys_Suggestion">
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="SuggestionTitle" ColumnName="SuggestionTitle" />
-                <ScalarProperty Name="SuggestionId" ColumnName="SuggestionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_Collect">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_Collect">
-              <MappingFragment StoreEntitySet="User_Collect">
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="CollectDate" ColumnName="CollectDate" />
-                <ScalarProperty Name="AboutTitle" ColumnName="AboutTitle" />
-                <ScalarProperty Name="AboutId" ColumnName="AboutId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CollectId" ColumnName="CollectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_LoginCategory">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_LoginCategory">
-              <MappingFragment StoreEntitySet="User_LoginCategory">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LoginCategoryId" ColumnName="LoginCategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_PhoneCheckCode">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_PhoneCheckCode">
-              <MappingFragment StoreEntitySet="User_PhoneCheckCode">
-                <ScalarProperty Name="AlreadCheck" ColumnName="AlreadCheck" />
-                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_Roles">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_Roles">
-              <MappingFragment StoreEntitySet="User_Roles">
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_UserInfo">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_UserInfo">
-              <MappingFragment StoreEntitySet="User_UserInfo">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CheckDate" ColumnName="CheckDate" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
-                <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
-                <ScalarProperty Name="HeadImage" ColumnName="HeadImage" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Sex" ColumnName="Sex" />
-                <ScalarProperty Name="RealName" ColumnName="RealName" />
-                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_UserLogin">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_UserLogin">
-              <MappingFragment StoreEntitySet="User_UserLogin">
-                <ScalarProperty Name="RolesIdList" ColumnName="RolesIdList" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_UserName">
-            <EntityTypeMapping TypeName="chefuzi_dataModel.User_UserName">
-              <MappingFragment StoreEntitySet="User_UserName">
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="LoginCategoryId" ColumnName="LoginCategoryId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="chefuzi_dataModelStoreContainer" CdmEntityContainer="chefuzi_dataEntities">
+    <EntitySetMapping Name="Article">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Article)">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="ArticlId" ColumnName="ArticlId" />
+          <ScalarProperty Name="CateId" ColumnName="CateId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ArticleTitle" ColumnName="ArticleTitle" />
+          <ScalarProperty Name="ArticleAuthor" ColumnName="ArticleAuthor" />
+          <ScalarProperty Name="ArticleDate" ColumnName="ArticleDate" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="ArticleSummary" ColumnName="ArticleSummary" />
+          <ScalarProperty Name="ArticleContent" ColumnName="ArticleContent" />
+          <ScalarProperty Name="ArticleImages" ColumnName="ArticleImages" />
+          <ScalarProperty Name="ArticleVideo" ColumnName="ArticleVideo" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="ReadTimes" ColumnName="ReadTimes" />
+          <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
+          <ScalarProperty Name="PraiseCount" ColumnName="PraiseCount" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Category">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Article_Category)">
+        <MappingFragment StoreEntitySet="Article_Category">
+          <ScalarProperty Name="CateId" ColumnName="CateId" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="CateTitle" ColumnName="CateTitle" />
+          <ScalarProperty Name="CateImage" ColumnName="CateImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Comment">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Article_Comment)">
+        <MappingFragment StoreEntitySet="Article_Comment">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="AboutId" ColumnName="AboutId" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Area_City">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_Area_City)">
+        <MappingFragment StoreEntitySet="Sys_Area_City">
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Area_District">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_Area_District)">
+        <MappingFragment StoreEntitySet="Sys_Area_District">
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Area_Province">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_Area_Province)">
+        <MappingFragment StoreEntitySet="Sys_Area_Province">
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_IdKey">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_IdKey)">
+        <MappingFragment StoreEntitySet="Sys_IdKey">
+          <ScalarProperty Name="IdKey" ColumnName="IdKey" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_IdTable">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_IdTable)">
+        <MappingFragment StoreEntitySet="Sys_IdTable">
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Status">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_Status)">
+        <MappingFragment StoreEntitySet="Sys_Status">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Suggestion">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.Sys_Suggestion)">
+        <MappingFragment StoreEntitySet="Sys_Suggestion">
+          <ScalarProperty Name="SuggestionId" ColumnName="SuggestionId" />
+          <ScalarProperty Name="SuggestionTitle" ColumnName="SuggestionTitle" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Collect">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_Collect)">
+        <MappingFragment StoreEntitySet="User_Collect">
+          <ScalarProperty Name="CollectId" ColumnName="CollectId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AboutId" ColumnName="AboutId" />
+          <ScalarProperty Name="AboutTitle" ColumnName="AboutTitle" />
+          <ScalarProperty Name="CollectDate" ColumnName="CollectDate" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_LoginCategory">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_LoginCategory)">
+        <MappingFragment StoreEntitySet="User_LoginCategory">
+          <ScalarProperty Name="LoginCategoryId" ColumnName="LoginCategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_PhoneCheckCode">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_PhoneCheckCode)">
+        <MappingFragment StoreEntitySet="User_PhoneCheckCode">
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="CheckCode" ColumnName="CheckCode" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="AlreadCheck" ColumnName="AlreadCheck" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_Roles)">
+        <MappingFragment StoreEntitySet="User_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_UserInfo">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_UserInfo)">
+        <MappingFragment StoreEntitySet="User_UserInfo">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="HeadImage" ColumnName="HeadImage" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="CheckDate" ColumnName="CheckDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_UserLogin">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_UserLogin)">
+        <MappingFragment StoreEntitySet="User_UserLogin">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="RolesIdList" ColumnName="RolesIdList" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_UserName">
+      <EntityTypeMapping TypeName="IsTypeOf(chefuzi_dataModel.User_UserName)">
+        <MappingFragment StoreEntitySet="User_UserName">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginCategoryId" ColumnName="LoginCategoryId" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -635,7 +634,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>

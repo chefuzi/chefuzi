@@ -406,10 +406,6 @@
     <Compile Include="DataReturn\StatusData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\chefuzi_data.mdf" />
-    <Content Include="App_Data\chefuzi_data_log.ldf">
-      <DependentUpon>chefuzi_data.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -463,6 +459,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="DataBaseModel\DataModel.edmx.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
